@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TanksTutorial</string>
+    <string name="settings">settings</string>
+    <string name="save">save</string>
+    <string name="play">play</string>
+    <string name="game_over">Game  \nover</string>
+</resources>

@@ -1,0 +1,65 @@
+buildscript {
+    ext.kotlin_version = '1.8.0'  // Обновлена версия Kotlin
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.7.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-parcelize'  // Добавлен плагин kotlin-parcelize для сериализации
+
+android {
+    compileSdkVersion 33  // Обновлена версия compileSdkVersion
+
+    defaultConfig {
+        applicationId "ru.appngo.tankstutorial"
+        minSdkVersion 17
+        targetSdkVersion 33  // Обновлена версия targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"  // Обновлена зависимость для тестов
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'  // Обновлена конфигурация ProGuard
+        }
+    }
+
+    // Включение View Binding
+    viewBinding {
+        enabled = true
+    }
+
+    // Настройка Kotlin
+    kotlinOptions {
+        jvmTarget = "1.8"  // Устанавливаем jvmTarget на 1.8 для совместимости
+    }
+
+    namespace 'ru.appngo.tankstutorial'
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Убедитесь, что версия Kotlin указана верно
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"  // Обновлена зависимость Kotlin
+
+    // Обновленные зависимости AndroidX вместо старых Support библиотек
+    implementation 'androidx.appcompat:appcompat:1.6.1'  // Заменена на AndroidX
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'  // Заменена на AndroidX
+
+    testImplementation 'junit:junit:4.13.2'  // Обновлена версия JUnit
+    androidTestImplementation 'androidx.test:runner:1.5.2'  // Обновлена версия для тестов
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'  // Обновлена версия для Espresso
+
+    // Пример использования Gson
+    implementation 'com.google.code.gson:gson:2.8.9'  // Обновлена версия Gson
+}
